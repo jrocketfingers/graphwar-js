@@ -84,8 +84,8 @@ module CanvasGraph {
         }
 
         private translate(p: Point) : Point {
-            p.x = p.x - this.xlim.lower * this.xscale;
-            p.y = p.y + this.ylim.upper * this.yscale;
+            p.x = (p.x - this.xlim.lower) * this.xscale;
+            p.y = (-p.y + this.ylim.upper) * this.yscale;
 
             return p;
         }
@@ -96,6 +96,8 @@ module CanvasGraph {
 
         draw(from: Point, to: Point) {
             this.context.beginPath();
+            this.context.strokeStyle = "#000000";
+            this.context.lineWidth = 2;
 
             from = this.translate(from);
             to = this.translate(to);
@@ -136,15 +138,16 @@ module CanvasGraph {
             this.interval = setInterval(() => this.render(), 1000/speed);
             this.iteration = 0;
 
+            this.origin = origin;
+
             this.xOffset = xIsOrigin ? 0 : origin.x;
             this.yOffset = origin.y;
 
-            this.prevX = 0 + this.xOffset;
+            this.prevX = 0 + this.origin.x;
             this.prevY = f(0 + this.xOffset) + origin.y;
 
             this.maxIterations = maxIters;
             this.f = f;
-            this.origin = origin;
         }
 
         private render() : void {

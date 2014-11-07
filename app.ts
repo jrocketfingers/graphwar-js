@@ -66,6 +66,13 @@ function render(ctx, i, lower, upper, step, f, xorigin, yoffset) {
 } */
 
 var xlim : CanvasGraph.Limit = {'lower': -25, 'upper': 25};
-var ylim : CanvasGraph.Limit = {'lower': -15, 'upper': 15};
+var ylim : CanvasGraph.Limit = {'lower': -25, 'upper': 25};
 var graph = new CanvasGraph.Graph('graph', xlim, ylim);
-graph.shoot(function(x) { return x; }, new CanvasGraph.Point(-10, 0), 500, 1000, true);
+
+function shoot() : void {
+    var x = (<HTMLInputElement>document.getElementById('origin-x')).valueOf();
+    var y = (<HTMLInputElement>document.getElementById('origin-y')).valueOf();
+
+    graph.clear();
+    graph.shoot(function (x) { return x - 25; }, new CanvasGraph.Point(parseInt(x), parseInt(y)), 500, 1000, true);
+}
