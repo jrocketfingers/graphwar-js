@@ -1,14 +1,15 @@
-function setupCanvas() {
-    var canvas = document.getElementById('graph');
+/// <reference path="graph.ts" />
+
+/*function setupCanvas() {
+    var canvas = <HTMLCanvasElement>document.getElementById('graph');
     var ctx = canvas.getContext('2d');
 
     ctx.translate(250, 250);
     ctx.scale(10, -10);
 }
-setupCanvas();
 
 function draw() {
-    var canvas = document.getElementById('graph');
+    var canvas = <HTMLCanvasElement>document.getElementById('graph');
     var ctx = canvas.getContext('2d');
 
     var step = 0.1;
@@ -62,6 +63,9 @@ function render(ctx, i, lower, upper, step, f, xorigin, yoffset) {
         ctx.stroke();
         setTimeout(function() { render(ctx, i + step, lower, upper, step, f, xorigin, yoffset); }, 5);
     }
-}
+} */
 
-draw();
+var xlim : CanvasGraph.Limit = {'lower': -25, 'upper': 25};
+var ylim : CanvasGraph.Limit = {'lower': -15, 'upper': 15};
+var graph = new CanvasGraph.Graph('graph', xlim, ylim);
+graph.shoot(function(x) { return x; }, new CanvasGraph.Point(-10, 0), 500, 1000, true);
