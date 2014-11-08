@@ -141,10 +141,10 @@ module CanvasGraph {
             this.origin = origin;
 
             this.xOffset = xIsOrigin ? 0 : origin.x;
-            this.yOffset = origin.y;
+            this.yOffset = f(this.xOffset) - origin.y;
 
-            this.prevX = 0 + this.origin.x;
-            this.prevY = f(0 + this.xOffset) + origin.y;
+            this.prevX = this.origin.x;
+            this.prevY = this.origin.y;
 
             this.maxIterations = maxIters;
             this.f = f;
@@ -169,7 +169,7 @@ module CanvasGraph {
         }
 
         private getY() : number {
-            return this.f(this.iteration + this.xOffset) + this.yOffset;
+            return this.f(this.iteration + this.xOffset) - this.yOffset;
         }
     }
 }
