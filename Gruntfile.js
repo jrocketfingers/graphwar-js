@@ -20,7 +20,10 @@ module.exports = function(grunt) {
     watch: {
       app: {
         files: '<%= typescript.base.src %>',
-        tasks: ['typescript']
+        tasks: ['typescript'],
+        options: {
+            livereload: true
+        },
       }
     }
   });
@@ -31,5 +34,4 @@ module.exports = function(grunt) {
 
   // Default task.
   grunt.registerTask('default', ['watch:app']);
-
 };

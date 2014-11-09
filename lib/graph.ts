@@ -92,8 +92,8 @@ module graphwar {
             return p;
         }
 
-        shoot(f: util.OneParameterFunction, origin: Point, speed: number, maxIters: number, xIsOrigin: boolean) {
-            var plotshot = new PlotShot(this, f, origin, speed, maxIters, xIsOrigin);
+        shoot(f: util.OneParameterFunction, origin: Point, speed: number, step: number, maxIters: number, xIsOrigin: boolean) {
+            var plotshot = new PlotShot(this, f, origin, speed, step, maxIters, xIsOrigin);
         }
 
         draw(from: Point, to: Point) {
@@ -123,6 +123,7 @@ module graphwar {
         private iteration: number;
 
         maxIterations: number;
+        step: number;
 
         private prevX: number;
         private prevY: number;
@@ -134,7 +135,7 @@ module graphwar {
 
         f: util.OneParameterFunction;
 
-        constructor(graph: Graph, f: util.OneParameterFunction, origin: Point, speed: number, maxIters: number, xIsOrigin: boolean) {
+        constructor(graph: Graph, f: util.OneParameterFunction, origin: Point, speed: number, step:number, maxIters: number, xIsOrigin: boolean) {
             this.graph = graph;
 
             this.interval = setInterval(() => this.render(), 1000/speed);
@@ -150,10 +151,14 @@ module graphwar {
 
             this.maxIterations = maxIters;
             this.f = f;
+            this.step = step;
         }
 
         private render() : void {
-            if(this.iteration < this.maxIterations) {
+            if(this.iteration < this.maxIterations
+               && this.prevX < this.graph.xlim.upper
+               && this.prevY < this.graph.ylim.upper) {
+
                 this.iteration++;
 
                 this.graph.draw(new Point(this.prevX, this.prevY), new Point(this.getX(), this.getY()));
@@ -167,11 +172,11 @@ module graphwar {
         }
 
         private getX() : number {
-            return this.iteration + this.origin.x;
+            return this.step * this.iteration + this.origin.x;
         }
 
         private getY() : number {
-            return this.f(this.iteration + this.xOffset) - this.yOffset;
+            return this.f(this.step * this.iteration + this.xOffset) - this.yOffset;
         }
     }
 }
