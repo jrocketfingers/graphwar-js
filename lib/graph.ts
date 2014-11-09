@@ -157,7 +157,8 @@ module graphwar {
         private render() : void {
             if(this.iteration < this.maxIterations
                && this.prevX < this.graph.xlim.upper
-               && this.prevY < this.graph.ylim.upper) {
+               && this.prevY < this.graph.ylim.upper
+               && this.prevY > this.graph.ylim.lower) {
 
                 this.iteration++;
 
