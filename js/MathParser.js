@@ -74,6 +74,8 @@ function findPriority(t)
     addPriority(")", 1, -1);
     addPriority(",", 1, -1);
 })();
+var unaryOperatorIPR = Infinity;
+var unaryOperatorSPR = 9;
 //End priorities
 
 function Token(value, type, ipr, spr)
@@ -221,11 +223,11 @@ function parseMathFunction(input) //converts to postfix
                         if (func.length === 2)
                             priority = findPriority(token.value);
                         else
-                            priority = {inputPriority: Infinity, stackPriority: Infinity};
+                            priority = {inputPriority: unaryOperatorIPR, stackPriority: unaryOperatorSPR};
                     }
                     else {
                         if (func.length === 2) func = getOperatorFunctions(token.value)[1];
-                        priority = {inputPriority: Infinity, stackPriority: Infinity};
+                        priority = {inputPriority: unaryOperatorIPR, stackPriority: unaryOperatorSPR};
                     }
                     token.value = func;
                 }
