@@ -281,3 +281,8 @@ function calculateParse(parse, x)
     if ((typeof result === "undefined") || (stack.length > 0)) throw "Invalid parse.";
     return result;
 }
+
+window.parser = {};
+window.parser.calculate = calculateParse;
+window.parser.parse = parseMathFunction;
+
