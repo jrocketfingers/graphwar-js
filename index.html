@@ -2,18 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-    <canvas id="graph" width="500" height="500" style="border: 2px solid lightgray"></canvas>
-    <form name="change_origin">
-        <label>Shoot from:</label>
-        <label>x</label><input id="origin-x" name="origin_x" type="number" value="-25">
-        <label>y</label><input id="origin-y" name="origin_y" type="number" value="0">
-        <input type="button" value="Shoot" onclick="shoot()">
-    </form>
+    <title>Graphwar JS</title>
 
-    <script src="graph.js"></script>
-    <script src="app.js"></script>
+    <script src="js/lib/angular.js"></script>
+    <script src="js/lib/angular-route.js"></script>
+</head>
+<body ng-app="graphwar">
+    <!-- angular view renderer -->
+    <ng-view></ng-view>
+
+    <!-- game screen template -->
+    <script type="text/ng-template" id="graphwar-main.html">
+
+        <canvas id="graph" width="500" height="500" style="border: 2px solid lightgray"></canvas>
+
+        <form name="player-controls-form" ng-submit="shoot()">
+            <label>Shoot from:</label> <br/>
+
+            <label for="x-origin">X:</label><input id="x-origin" ng-model="xOrigin" type="number" value="-25">
+
+            <label for="y-origin">Y:</label><input id="y-origin" ng-model="yOrigin" type="number" value="0">
+
+            <input type="submit" value="Shoot">
+        </form>
+
+    </script>
+
+
+    <script src="js/graph.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
