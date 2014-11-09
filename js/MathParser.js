@@ -216,7 +216,8 @@ function parseMathFunction(input) //converts to postfix
             {
                 if (token.type === "operator") {
                     var func = getOperatorFunctions(token.value)[0];
-                    if ((typeof prevToken != "undefined") && ((prevToken.type === "operand") || (prevToken.type === "bracket"))) {
+                    if ((typeof prevToken != "undefined") &&
+                        ((prevToken.type === "operand") || (prevToken.value === ")"))) {
                         if (func.length === 2)
                             priority = findPriority(token.value);
                         else
