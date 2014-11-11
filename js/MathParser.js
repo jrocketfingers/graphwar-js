@@ -9,8 +9,9 @@ function getFunctionName(func)
 var constants = ["e", "pi"];
 
 //Math functions
+function ln(a) { return Math.log(a); }
 var	functions = [Math.abs, Math.acos, Math.asin,
-    Math.atan, Math.cos, Math.exp, Math.log, Math.pow, Math.sin, Math.sqrt, Math.tan];
+    Math.atan, Math.cos, Math.exp, Math.log, Math.pow, Math.sin, Math.sqrt, Math.tan, ln];
 function getMathFunction(name)
 {
     for(var i = 0; i < functions.length; i++)
@@ -283,3 +284,7 @@ function calculateParse(parse, x)
     if ((typeof result === "undefined") || (stack.length > 0)) throw "Invalid parse.";
     return result;
 }
+
+window.parser = {};
+window.parser.calculate = calculateParse;
+window.parser.parse = parseMathFunction;
