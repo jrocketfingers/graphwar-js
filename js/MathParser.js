@@ -287,4 +287,9 @@ function calculateParse(parse, x)
 
 window.parser = {};
 window.parser.calculate = calculateParse;
+<<<<<<< HEAD
 window.parser.parse = parseMathFunction;
+=======
+window.parser.parse = parseMathFunction;
+
+>>>>>>> 5d7015562742b2dbb96f5d3d885a3a9c840fadfd

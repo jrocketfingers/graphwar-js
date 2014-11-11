@@ -1,5 +1,6 @@
 /// <reference path="defs/angular.d.ts" />
 /// <reference path="graph.ts" />
+/// <reference path="player.ts" />
 
 module game {
     'use strict';
@@ -21,6 +22,13 @@ module game {
         });
 
 
+    angular.module('graphwar').controller('SetupCtrl', function($scope) {
+        $scope.players = [];
+        $scope.newPlayer = function() : void {
+            $scope.players.append(new graphwar.Player($scope.newPlayerName));
+        }
+    });
+
     angular.module('graphwar').controller('GameCtrl', function($scope, $routeParams) {
         var xlim:graphwar.util.Limit = {'lower': -25, 'upper': 25};
         var ylim:graphwar.util.Limit = {'lower': -25, 'upper': 25};
@@ -30,10 +38,16 @@ module game {
             var x = $scope.xOrigin;
             var y = $scope.yOrigin;
 
-            graph.clear();
-            graph.shoot(function (x) {
-                return x - 10;
-            }, new graphwar.Point(x, y), 20, 1000, true);
+            try {
+                var parsed = (<any>window).parser.parse($scope.function);
+
+                graph.clear();
+                graph.shoot(function (x) {
+                    return (<any>window).parser.calculate(parsed, x);
+                }, new graphwar.Point(x, y), 20, 0.1, 1000, true);
+            } catch(err) {
+                $scope.error = err;
+            }
         }
     });
 }
