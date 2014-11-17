@@ -34,6 +34,11 @@ module game {
         var ylim:graphwar.util.Limit = {'lower': -25, 'upper': 25};
         var graph = new graphwar.Graph('graph', xlim, ylim);
 
+        $scope.xOrigin = 0;
+        $scope.yOrigin = 0;
+
+        $scope.locked = graph.locked;
+
         $scope.shoot = function() : void {
             var x = $scope.xOrigin;
             var y = $scope.yOrigin;
@@ -44,7 +49,9 @@ module game {
                 graph.clear();
                 graph.shoot(function (x) {
                     return (<any>window).parser.calculate(parsed, x);
-                }, new graphwar.Point(x, y), 20, 0.1, 1000, true);
+                }, new graphwar.Point(x, y), 1000, 0.1, 1000, true);
+
+                $scope.error = "";
             } catch(err) {
                 $scope.error = err;
             }

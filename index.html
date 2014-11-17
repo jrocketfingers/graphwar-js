@@ -6,6 +6,7 @@
 
     <script src="js/lib/angular.js"></script>
     <script src="js/lib/angular-route.js"></script>
+    <script src="js/lib/kinetic-v5.1.0.js"></script>
 </head>
 <body ng-app="graphwar">
     <!-- angular view renderer -->
@@ -26,7 +27,7 @@
 
             <p id="errors">{{ error }}</p>
 
-            <input type="submit" value="Shoot">
+            <input type="submit" value="Shoot" ngDisabled="locked">
         </form>
 
     </script>
