@@ -42,12 +42,15 @@ module graphwar {
         xscale: number;
         yscale: number;
 
-        constructor(id: string, xlim: util.Limit, ylim: util.Limit) {
+        constructor(id: string, xlim: util.Limit, ylim: util.Limit, width: number, height: number) {
             this.canvas = <HTMLCanvasElement> document.getElementById(id);
             this.context = this.canvas.getContext('2d');
 
-            this.width = this.canvas.width;
-            this.height = this.canvas.height;
+            this.width = width;
+            this.height = height;
+
+            this.canvas.width = width;
+            this.canvas.height = height;
 
             this.xlim = xlim;
             this.ylim = ylim;

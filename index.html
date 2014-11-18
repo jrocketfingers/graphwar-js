@@ -4,37 +4,31 @@
     <meta charset="UTF-8">
     <title>Graphwar JS</title>
 
+    <script src="js/lib/kinetic-v5.1.0.js"></script>
+
+    <script src="js/lib/jquery.js"></script>
     <script src="js/lib/angular.js"></script>
     <script src="js/lib/angular-route.js"></script>
-    <script src="js/lib/kinetic-v5.1.0.js"></script>
+    <script src="js/lib/semantic.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/lib/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="css/app.css">
 </head>
 <body ng-app="graphwar">
     <!-- angular view renderer -->
     <ng-view></ng-view>
 
-    <!-- game screen template -->
-    <script type="text/ng-template" id="graphwar-main.html">
+    <script src="js/routes.js"></script>
 
-        <canvas id="graph" width="500" height="500" style="border: 2px solid lightgray"></canvas>
+    <script src="views/main/main.js"></script>
+    <script src="views/play/play.js"></script>
 
-        <form name="player-controls-form" ng-submit="shoot()">
-            <label>Shoot from:</label> <br/>
-
-            <label for="function">f(x):</label><input id="function" ng-model="function" type="text">
-            <label for="x-origin">X:</label><input id="x-origin" ng-model="xOrigin" type="number" step="any" value="-25">
-
-            <label for="y-origin">Y:</label><input id="y-origin" ng-model="yOrigin" type="number" step="any" value="0">
-
-            <p id="errors">{{ error }}</p>
-
-            <input type="submit" value="Shoot" ngDisabled="locked">
-        </form>
-
-    </script>
-
+    <script src="js/services.js"></script>
 
     <script src="js/MathParser.js"></script>
     <script src="js/graph.js"></script>
     <script src="js/app.js"></script>
+
+    <script src="directives/graph/graph.js"></script>
 </body>
 </html>

@@ -1,0 +1,32 @@
+<form class="ui form segment piled blue" ng-class="{'error': error.length}" name="player-controls-form" ng-submit="shoot()">
+    <div class="ui error message">
+      <p>{{ error }}</p>
+    </div>
+
+    <div class="inline fields">
+      <div class="field">
+        <label for="function">f(x):</label>
+        <input id="function" ng-model="function" type="text">
+      </div>
+
+      <div class="field">
+        <label for="x-origin">X:</label>
+        <input id="x-origin" ng-model="xOrigin" type="number" step="any" value="-25">
+      </div>
+
+      <div class="field">
+        <label for="y-origin">Y:</label>
+        <input id="y-origin" ng-model="yOrigin" type="number" step="any" value="0">
+      </div>
+
+
+      <div class="field">
+        <input class="ui blue submit button" type="submit" value="Shoot" ngDisabled="locked">
+      </div>
+    </div>
+</form>
+
+<div class="ui basic center aligned segment">
+  <canvas id="graph" width="{{ width }}" height="{{ height }}" style="border: 2px solid lightgray"></canvas>
+</div>
+

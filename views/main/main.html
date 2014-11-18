@@ -1,0 +1,85 @@
+<div class="ui page two column grid">
+    <h4 class="ui inverted black block header">GraphwarJS</h1>
+
+    <div class="ui row">
+        <div class="ui column">
+
+            <form ng-submit="addPlayer()" class="ui form raised segment">
+                <div class="two fields">
+                    <div class="field">
+                        <input type="text" ng-model="newPlayer" placeholder="Add a new player..."></input>
+                    </div>
+
+                    <div class="field">
+                        <input class="ui button one column" type="submit" value="Add"></input>
+                    </div>
+                </div>
+            </form>
+
+
+
+            <form class="ui form raised segment" ng-submit="proceed()">
+                <div class="two fields">
+                    <div class="field">
+                        <label>Width in pixels:</label>
+                        <input type="number" ng-model="settings.width" min="100"> </input>
+                    </div>
+                    <div class="field">
+                        <label>Height in pixels:</label>
+                        <input type="number" ng-model="settings.height" min="100"></input>
+                    </div>
+                </div>
+
+                <div class="two fields">
+                    <div class="field">
+                        <label>Minimal x:</label>
+                        <input type="number" ng-model="settings.minX"> </input>
+                    </div>
+                    <div class="field">
+                        <label>Maximal x:</label>
+                        <input type="number" ng-model="settings.maxX"> </input>
+                    </div>
+                </div>
+
+                <div class="two fields">
+                    <div class="field">
+                        <label>Minimal y:</label>
+                        <input type="number" ng-model="settings.minY"></input>
+                    </div>
+                    <div class="field">
+                        <label>Maximal y:</label>
+                        <input type="number" ng-model="settings.maxY"></input>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <input class="ui blue button" type="submit" value="Start"></input>
+                </div>
+            </form>
+        </div>
+
+
+
+        <div class="ui column">
+            <div ng-repeat="player in players"
+                 class="ui segment stacked {{ player.color }}">
+
+                <h4>{{ player.name }}</h4>
+                <form class="ui small form">
+                    <div class="two fields">
+                        <div class="inline field mini input">
+                            <label>No. of soldiers</label>
+                            <input type="number" min="1" max="4" ng-model="player.soldiers"/>
+                        </div>
+                        <div class="inline field">
+                            <div class="ui checkbox">
+                                <input id="is-origin-{{ player.name }}" type="checkbox" ng-model="player.isOrigin"/>
+                                <label for="is-origin-{{ player.name }}"><h3>Shoot from origin</h3></label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
